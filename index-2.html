@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahadat Hossen Shizan — Scholar. Olympian. Storyteller.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-deep:#0B1B33;
+    --ink-navy2:#142A4D;
+    --parchment:#F3ECDD;
+    --parchment-dim:#E7DCC3;
+    --gold:#C9A227;
+    --gold-soft:#DCC77A;
+    --rust:#9A3B2E;
+    --text-light:#F3ECDD;
+    --text-muted:#AEBAD1;
+    --line:rgba(243,236,221,0.14);
+    --max-w:1100px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink-deep);
+    color:var(--text-light);
+    font-family:'Spectral', serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold); color:var(--ink-deep);}
+
+  h1,h2,h3,.display{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- background texture ---------- */
+  .stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, rgba(243,236,221,0.5) 50%, transparent 51%),
+      radial-gradient(1px 1px at 65% 15%, rgba(243,236,221,0.35) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 82% 55%, rgba(243,236,221,0.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 12% 70%, rgba(243,236,221,0.3) 50%, transparent 51%),
+      radial-gradient(1px 1px at 45% 85%, rgba(243,236,221,0.35) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 92% 80%, rgba(243,236,221,0.3) 50%, transparent 51%),
+      radial-gradient(1px 1px at 35% 45%, rgba(243,236,221,0.25) 50%, transparent 51%),
+      radial-gradient(1px 1px at 75% 35%, rgba(243,236,221,0.3) 50%, transparent 51%);
+    background-repeat:no-repeat;
+    opacity:0.9;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.4rem clamp(1.2rem, 5vw, 3.5rem);
+    background:linear-gradient(180deg, rgba(11,27,51,0.92), rgba(11,27,51,0));
+    backdrop-filter:blur(2px);
+  }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:700; font-size:1.3rem; letter-spacing:0.08em;
+    border:1px solid var(--gold); border-radius:50%;
+    width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+    color:var(--gold-soft);
+  }
+  .nav-links{display:flex; gap:2.2rem; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;}
+  .nav-links a{opacity:0.8; transition:opacity .25s, color .25s; position:relative;}
+  .nav-links a:hover{opacity:1; color:var(--gold-soft);}
+  .nav-links a:focus-visible, a:focus-visible{outline:1px solid var(--gold); outline-offset:4px;}
+
+  /* ---------- hero ---------- */
+  header.hero{
+    position:relative; z-index:1;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:8rem 1.5rem 4rem;
+  }
+  .astrolabe{
+    width:min(340px, 60vw); height:auto; margin-bottom:1.6rem; opacity:0.95;
+  }
+  .astrolabe circle, .astrolabe line, .astrolabe path{
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 3.2s ease forwards;
+  }
+  .astrolabe .dot{ animation:fadeIn 1s ease forwards 2.6s; opacity:0; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fadeIn{ to{ opacity:1; } }
+
+  header.hero h1{
+    font-size:clamp(2.6rem, 7vw, 5rem);
+    line-height:1.05;
+    color:var(--parchment);
+    margin:0.6rem 0 0.4rem;
+  }
+  header.hero h1 em{ color:var(--gold); font-style:italic; }
+  .location{
+    font-family:'JetBrains Mono', monospace; font-size:0.85rem; letter-spacing:0.08em;
+    color:var(--text-muted); margin-bottom:1.6rem;
+  }
+  .tagline{
+    max-width:620px; font-size:1.08rem; font-weight:300; color:var(--text-muted);
+    margin-bottom:2.4rem;
+  }
+  .badge-row{
+    display:flex; flex-wrap:wrap; gap:0.6rem; justify-content:center; max-width:720px; margin-bottom:3.2rem;
+  }
+  .badge{
+    font-family:'JetBrains Mono', monospace; font-size:0.7rem; letter-spacing:0.03em;
+    border:1px solid var(--line); border-radius:999px; padding:0.45rem 0.9rem;
+    color:var(--parchment-dim);
+    background:rgba(243,236,221,0.03);
+  }
+
+  .stat-row{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+    max-width:760px; width:100%;
+  }
+  .stat{ background:var(--ink-deep); padding:1.6rem 0.6rem; text-align:center; }
+  .stat .num{ font-family:'Cormorant Garamond', serif; font-weight:700; font-size:2.4rem; color:var(--gold); display:block; }
+  .stat .lbl{ font-family:'JetBrains Mono', monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted); }
+
+  .scroll-cue{
+    margin-top:3rem; font-family:'JetBrains Mono', monospace; font-size:0.65rem;
+    letter-spacing:0.2em; text-transform:uppercase; color:var(--text-muted);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  }
+  .scroll-cue .line{ width:1px; height:30px; background:linear-gradient(var(--gold), transparent); animation:pulse 2s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+  /* ---------- sections ---------- */
+  section{ position:relative; z-index:1; padding:6.5rem clamp(1.3rem, 6vw, 4rem); max-width:var(--max-w); margin:0 auto; }
+  .section-head{ margin-bottom:3rem; }
+  .section-head .eyebrow{ margin-bottom:0.6rem; display:block; }
+  .section-head h2{ font-size:clamp(2rem, 4vw, 2.9rem); color:var(--parchment); }
+  .section-head h2 em{ color:var(--gold); font-style:italic; }
+
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- achievements ---------- */
+  .card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.2rem; }
+  .card{
+    border:1px solid var(--line); padding:1.7rem 1.6rem; background:linear-gradient(160deg, rgba(243,236,221,0.035), rgba(243,236,221,0));
+    position:relative; transition:border-color .3s, transform .3s;
+  }
+  .card:hover{ border-color:var(--gold); transform:translateY(-3px); }
+  .card .tag{ font-family:'JetBrains Mono', monospace; font-size:0.65rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:0.7rem; display:block;}
+  .card h3{ font-size:1.35rem; color:var(--parchment); margin-bottom:0.5rem; font-weight:600; }
+  .card p{ font-size:0.92rem; color:var(--text-muted); font-weight:300; }
+  .card .seal{
+    position:absolute; top:1.4rem; right:1.4rem; width:34px; height:34px;
+    border:1px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif; color:var(--gold); font-size:1rem;
+  }
+
+  /* ---------- journey (lanes, no fabricated dates) ---------- */
+  .lanes{ display:flex; flex-direction:column; gap:2.6rem; }
+  .lane{ border-left:1px solid var(--line); padding-left:1.8rem; position:relative; }
+  .lane::before{
+    content:''; position:absolute; left:-5px; top:0.3rem; width:9px; height:9px; border-radius:50%;
+    background:var(--gold);
+  }
+  .lane .lane-title{ font-family:'JetBrains Mono', monospace; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:0.7rem; }
+  .lane ul{ list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+  .lane li{ color:var(--parchment-dim); font-size:1rem; font-weight:300; padding-left:1rem; position:relative;}
+  .lane li::before{ content:'—'; position:absolute; left:0; color:var(--text-muted); }
+
+  /* ---------- passions ---------- */
+  .passion-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:2.4rem; }
+  .passion-block{ border:1px solid var(--line); padding:1.8rem; }
+  .passion-block h3{ font-size:1.15rem; color:var(--gold-soft); font-family:'JetBrains Mono', monospace; font-weight:500; letter-spacing:0.05em; text-transform:uppercase; font-size:0.78rem; margin-bottom:1.1rem; }
+  .chip-wrap{ display:flex; flex-wrap:wrap; gap:0.55rem; }
+  .chip{
+    font-size:0.92rem; color:var(--parchment); border:1px solid var(--line); padding:0.4rem 0.85rem;
+    font-family:'Spectral', serif; font-weight:400; background:rgba(243,236,221,0.02);
+  }
+  .lang-list{ display:flex; flex-direction:column; gap:0.9rem; margin-top:0.2rem;}
+  .lang-row{ display:flex; align-items:center; justify-content:space-between; font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:var(--text-muted); border-bottom:1px dashed var(--line); padding-bottom:0.6rem;}
+
+  blockquote.labnote{
+    grid-column:1 / -1; margin-top:0.6rem; border-top:1px solid var(--line); padding-top:1.8rem;
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.35rem; color:var(--parchment-dim);
+    text-align:center; max-width:680px; margin-left:auto; margin-right:auto;
+  }
+
+  /* ---------- contact ---------- */
+  .contact-wrap{ text-align:center; }
+  .contact-wrap p{ max-width:520px; margin:0 auto 2.2rem; color:var(--text-muted); }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+  .contact-links a{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase;
+    border:1px solid var(--gold); color:var(--gold-soft); padding:0.85rem 1.6rem; transition:background .25s, color .25s;
+  }
+  .contact-links a:hover{ background:var(--gold); color:var(--ink-deep); }
+
+  footer{ text-align:center; padding:3rem 1.5rem; color:var(--text-muted); font-size:0.78rem; font-family:'JetBrains Mono', monospace; letter-spacing:0.04em; border-top:1px solid var(--line); position:relative; z-index:1;}
+
+  @media (max-width:720px){
+    .stat-row{ grid-template-columns:repeat(2,1fr); }
+    .passion-grid{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav>
+  <div class="logo">SHS</div>
+  <div class="nav-links">
+    <a href="#achievements">Achievements</a>
+    <a href="#journey">Journey</a>
+    <a href="#passions">Passions</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="astrolabe" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="80" stroke="#C9A227" stroke-width="1"/>
+    <circle cx="100" cy="100" r="58" stroke="#DCC77A" stroke-width="0.7"/>
+    <circle cx="100" cy="100" r="34" stroke="#C9A227" stroke-width="0.6"/>
+    <line x1="100" y1="10" x2="100" y2="190" stroke="#DCC77A" stroke-width="0.6"/>
+    <line x1="10" y1="100" x2="190" y2="100" stroke="#DCC77A" stroke-width="0.6"/>
+    <path d="M100 20 L106 96 L180 100 L106 104 L100 180 L94 104 L20 100 L94 96 Z" stroke="#C9A227" stroke-width="0.8"/>
+    <circle class="dot" cx="100" cy="20" r="2.2" fill="#F3ECDD"/>
+    <circle class="dot" cx="180" cy="100" r="1.6" fill="#F3ECDD"/>
+    <circle class="dot" cx="100" cy="180" r="1.6" fill="#F3ECDD"/>
+    <circle class="dot" cx="20" cy="100" r="1.6" fill="#F3ECDD"/>
+    <circle class="dot" cx="100" cy="100" r="2.6" fill="#C9A227"/>
+  </svg>
+
+  <span class="eyebrow">Scholar · Olympian · Storyteller</span>
+  <h1>Shahadat Hossen <em>Shizan</em></h1>
+  <div class="location">Mymensingh, Bangladesh</div>
+  <p class="tagline">A young mind mapping the distance between physics and poetry — carrying medals from astronomy and IQ olympiads, arguments from the debate stage, and stories from the page, all at once.</p>
+
+  <div class="badge-row">
+    <span class="badge">Diploma · International Astronomy Olympiad</span>
+    <span class="badge">3× Physics Olympiad Champion</span>
+    <span class="badge">3× Astronomy Olympiad Champion</span>
+    <span class="badge">3× Biology Olympiad Champion</span>
+    <span class="badge">Regional Debate Champion</span>
+    <span class="badge">Published Author</span>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><span class="num">~30</span><span class="lbl">Medals</span></div>
+    <div class="stat"><span class="num">15</span><span class="lbl">Crests</span></div>
+    <div class="stat"><span class="num">50</span><span class="lbl">Certificates</span></div>
+    <div class="stat"><span class="num">5</span><span class="lbl">Languages</span></div>
+  </div>
+
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</header>
+
+<section id="achievements">
+  <div class="section-head reveal">
+    <span class="eyebrow">Recognition</span>
+    <h2>Notable <em>Achievements</em></h2>
+  </div>
+  <div class="card-grid">
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">International · Diploma</span>
+      <h3>International Astronomy Olympiad (IAO)</h3>
+      <p>Earned a diploma at the IAO, standing among an international field of young astronomers.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Olympiad · 2 Silver, 1 Bronze</span>
+      <h3>Physics Olympiad</h3>
+      <p>Three-time medalist — two silver and one bronze — built on a sustained command of physics fundamentals and problem solving.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Olympiad · 3× Gold</span>
+      <h3>Astronomy Olympiad</h3>
+      <p>Three-time gold medalist — the terrestrial counterpart to an international astronomy diploma.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Olympiad · Gold, Silver, Bronze</span>
+      <h3>Biology Olympiad</h3>
+      <p>One gold, one silver, and one bronze across three appearances — rounding out a broad command of the sciences.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Olympiad · Selected</span>
+      <h3>Junior Science Olympiad</h3>
+      <p>Selected to compete at the Junior Science Olympiad.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Olympiad · Participant</span>
+      <h3>Math Olympiad</h3>
+      <p>Participated in the Math Olympiad.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Olympiad · Gold</span>
+      <h3>English Olympiad</h3>
+      <p>Gold medalist at the English Olympiad.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">International · 2 Gold</span>
+      <h3>International IQ Olympiad</h3>
+      <p>Two gold medals on the international stage, alongside back-to-back National IQ Olympiad titles.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">National · Champion ×2</span>
+      <h3>National IQ Olympiad</h3>
+      <p>Two-time national champion in reasoning and problem-solving.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Academic · Medals &amp; Awards</span>
+      <h3>Organization-Level Recognitions</h3>
+      <p>Medals and awards from academic organizations including Udvash, Pacemaker, Plasmid, Canvas, and Remars.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Debate · Regional Champion</span>
+      <h3>Master Debater</h3>
+      <p>Regional Debate Champion.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Academic Competition</span>
+      <h3>Student Association Competitions</h3>
+      <p>1st place twice and 4th once at Arise Students Association, 1st at Efforts Students Association, 3rd at Youth Students Association.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Games</span>
+      <h3>Chess &amp; the Cube</h3>
+      <p>Rated 1600 in chess, with a personal-best Rubik's Cube solve of 14 seconds.</p>
+    </div>
+
+    <div class="card reveal">
+      <span class="tag">Writing · Published</span>
+      <h3>Story &amp; Poetry Publication</h3>
+      <p>Published a story in a magazine, and poems for a school project.</p>
+    </div>
+
+    <div class="card reveal"><span class="seal">✦</span>
+      <span class="tag">Regional · Champion</span>
+      <h3>Bangabandhu Srijonshil Medha Onneshon</h3>
+      <p>Named champion of this regional talent-search competition.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="journey">
+  <div class="section-head reveal">
+    <span class="eyebrow">Range</span>
+    <h2>Fields of <em>Pursuit</em></h2>
+  </div>
+  <div class="lanes">
+    <div class="lane reveal">
+      <div class="lane-title">Sciences &amp; Olympiads</div>
+      <ul>
+        <li>International Astronomy Olympiad — Diploma</li>
+        <li>Physics Olympiad — 2 Silver, 1 Bronze</li>
+        <li>Astronomy Olympiad — 3× Gold</li>
+        <li>Biology Olympiad — 1 Gold, 1 Silver, 1 Bronze</li>
+        <li>Junior Science Olympiad — Selected</li>
+        <li>Math Olympiad — Participant</li>
+        <li>English Olympiad — Gold</li>
+        <li>International IQ Olympiad — 2 Gold</li>
+        <li>National IQ Olympiad — 2× Champion</li>
+        <li>Medals &amp; awards from Udvash, Pacemaker, Plasmid, Canvas &amp; Remars</li>
+      </ul>
+    </div>
+    <div class="lane reveal">
+      <div class="lane-title">Debate</div>
+      <ul>
+        <li>Master Debater — Regional Debate Champion</li>
+      </ul>
+    </div>
+    <div class="lane reveal">
+      <div class="lane-title">Academic Competitions</div>
+      <ul>
+        <li>Arise Students Association — 1st place twice, 4th place once</li>
+        <li>Efforts Students Association — 1st place</li>
+        <li>Youth Students Association — 3rd place</li>
+      </ul>
+    </div>
+    <div class="lane reveal">
+      <div class="lane-title">Craft &amp; Strategy</div>
+      <ul>
+        <li>Published story in a magazine; poems published for a school project</li>
+        <li>Chess rated 1600</li>
+        <li>Rubik's Cube — 14 second personal best</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="passions">
+  <div class="section-head reveal">
+    <span class="eyebrow">Profile</span>
+    <h2>Passions &amp; <em>Dimensions</em></h2>
+  </div>
+  <div class="passion-grid">
+    <div class="passion-block reveal">
+      <h3>Academic Interests</h3>
+      <div class="chip-wrap">
+        <span class="chip">History</span>
+        <span class="chip">Religion</span>
+        <span class="chip">Geopolitics</span>
+        <span class="chip">Mathematics</span>
+        <span class="chip">Quantum Physics</span>
+        <span class="chip">Relativity</span>
+        <span class="chip">Warfare &amp; Tactics</span>
+        <span class="chip">Astronomy</span>
+        <span class="chip">Astrophysics</span>
+        <span class="chip">Drawing</span>
+      </div>
+    </div>
+    <div class="passion-block reveal">
+      <h3>Beyond Academics</h3>
+      <div class="chip-wrap">
+        <span class="chip">Chess</span>
+        <span class="chip">Football</span>
+        <span class="chip">Cricket</span>
+        <span class="chip">Board Games</span>
+        <span class="chip">Running</span>
+        <span class="chip">Writing</span>
+        <span class="chip">Cursive Handwriting</span>
+      </div>
+    </div>
+    <div class="passion-block reveal" style="grid-column:1 / -1;">
+      <h3>Language Proficiency</h3>
+      <div class="lang-list">
+        <div class="lang-row"><span>Bangla</span><span>Native</span></div>
+        <div class="lang-row"><span>English</span><span>Fluent</span></div>
+        <div class="lang-row"><span>Hindi</span><span>Fluent</span></div>
+        <div class="lang-row"><span>Urdu</span><span>Almost Fluent</span></div>
+        <div class="lang-row"><span>Russian</span><span>Learning</span></div>
+      </div>
+    </div>
+    <blockquote class="labnote reveal">"Between an equation and a stanza, I don't see much difference — both are just trying to describe something too large for plain words."</blockquote>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-head reveal" style="text-align:center;">
+    <span class="eyebrow">Connect</span>
+    <h2>Get in <em>Touch</em></h2>
+  </div>
+  <div class="contact-wrap reveal">
+    <p>Whether it's olympiads, debate, chess, or a story worth telling — reach out.</p>
+    <div class="contact-links">
+      <a href="mailto:shizansarkar99@gmail.com">Email</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Shahadat Hossen Shizan · Mymensingh, Bangladesh</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.15 });
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
